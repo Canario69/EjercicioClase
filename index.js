@@ -1,5 +1,6 @@
 var express = require('express');
 const apiRouter = require('./server');
+const { errorLogs, HandlerError, handlerError } = require('./middleware/error.handler');
 var app = express();
 
 app.use(express.json());
@@ -15,3 +16,7 @@ app.listen(3000, function() {
   console.log("hola tú");
 
 });
+
+app.use(handlerError); //lo pongo el este orden para que se ejecute como Andrés quiere
+app.use(errorLogs);
+
