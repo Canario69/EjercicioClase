@@ -27,4 +27,14 @@ router.get('/:id', async function(req, res){
    return getOneProduct;
 });
 
+//Andrés hace una cagada a propósito
+router.get('/', async function (req, res, next) {
+  try {
+    const products= await productServices.getAllProducts(req,res);
+    res.json(products);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
